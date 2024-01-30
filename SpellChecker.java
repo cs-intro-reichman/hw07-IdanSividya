@@ -62,7 +62,6 @@ public class SpellChecker {
 			 	Wordnew = dictionary[i];
 			}
 		}
-		System.out.println(levenshtein("cat", "category"));
 		if (min <= threshold)
 			return Wordnew;
 		else
