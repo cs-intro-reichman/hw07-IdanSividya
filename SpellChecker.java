@@ -24,9 +24,9 @@ public class SpellChecker {
 		word2 = word2.toLowerCase();
 		if (word1.length() == 0)
 		return word2.length();
-		if (word2.length() == 0)
+		else if (word2.length() == 0)
 		return word1.length();
-		if (word1.charAt(0) == word2.charAt(0))
+		else if (word1.charAt(0) == word2.charAt(0))
 		{
 			return levenshtein(tail(word1), tail(word2));
 
@@ -60,7 +60,8 @@ public class SpellChecker {
 			 	Wordnew = dictionary[i];
 			}
 		}
-		if (min <= threshold||min>0)
+		System.out.println(levenshtein("cat", "category"));
+		if (min <= threshold)
 			return Wordnew;
 		else
 			return word;
