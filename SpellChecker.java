@@ -11,11 +11,31 @@ public class SpellChecker {
 	}
 
 	public static String tail(String str) {
-		// Your code goes here
+		if (str.length() == 1)
+			return "";
+		else{		
+			String tail = str.substring(1);
+			return tail;
+		}
 	}
 
 	public static int levenshtein(String word1, String word2) {
-		// Your code goes here
+		word1 = word1.toLowerCase();
+		word2 = word2.toLowerCase();
+		if (word1.length() == 0)
+		return word2.length();
+		if (word2.length() == 0)
+		return word1.length();
+		if (word1.charAt(0) == word2.charAt(0))
+		{
+			return levenshtein(tail(word1), tail(word2));
+
+		}
+		else {
+			return 1 + Math.min (levenshtein(tail(word1), word2), Math.min(levenshtein(word1, tail(word2)),levenshtein(tail(word1), tail(word2))));
+		}
+		
+
 	}
 
 	public static String[] readDictionary(String fileName) {
@@ -23,13 +43,28 @@ public class SpellChecker {
 
 		In in = new In(fileName);
 
-		// Your code here
-
+		for (int i = 0; i < dictionary.length; i++)
+		{	
+			dictionary[i] = in.readLine();
+		}
 		return dictionary;
 	}
 
 	public static String spellChecker(String word, int threshold, String[] dictionary) {
-		// Your code goes here
+		int min = levenshtein(dictionary[0], word);
+		String Wordnew = dictionary[0];
+		for (int i = 1; i < dictionary.length; i++)
+		{
+			 if(levenshtein(dictionary[i], word) <= min){ 
+			 	min = (levenshtein(dictionary[i], word));
+			 	Wordnew = dictionary[i];
+			}
+		}
+		if (min <= threshold||min>0)
+			return Wordnew;
+		else
+			return word;
+
 	}
 
 }
