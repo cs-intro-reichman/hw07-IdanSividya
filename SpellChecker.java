@@ -58,7 +58,7 @@ public class SpellChecker {
 		
 		for (int i = 1; i < dictionary.length; i++){
 			 
-			if(levenshtein(dictionary[i], word) <= min){ 
+			if(levenshtein(dictionary[i], word) < min){ 
 			 	min = (levenshtein(dictionary[i], word));
 			 	Wordnew = dictionary[i];
 			}
